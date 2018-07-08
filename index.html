@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+
+    <script>
+
+        function getCurrentTime() {
+            const date = new Date();
+            console.log('date :', date);
+            let hours = date.getHours();
+            const seconds = date.getSeconds();
+            const minutes = date.getMinutes();
+            const day = date.getDay();
+            console.log('hours :', hours);
+            document.body.innerHTML = '';
+            document.write(`Today is: ${getDayOfWeek(day)} | Current time: ${getHour(hours)} : 
+            ${minutes} : ${seconds}`);
+
+        }
+        function getDayOfWeek(day) {
+            switch (day) {
+                case 0:
+                    day = "Sunday";
+                    break;
+                case 1:
+                    day = "Monday";
+                    break;
+                case 2:
+                    day = "Tuesday";
+                    break;
+                case 3:
+                    day = "Wednesday";
+                    break;
+                case 4:
+                    day = "Thursday";
+                    break;
+                case 5:
+                    day = "Friday";
+                    break;
+                case 6:
+                    day = "Saturday";
+            }
+            return day;
+        }
+        function getHour(hours) {
+
+            if (hours < 12) {
+                return `${hours} AM`;
+            } else if (hours == 12) {
+                return `${hours} PM`;
+            } else {
+                return `${hours - 12} PM`;
+            }
+        }
+        // setInterval(getCurrentTime,1000)
+
+
+        function getDaysLeft(date = 2, month = 9) {
+            const milisecondOfDay = 24 * 60 * 60 * 1000;
+            const currentDay = new Date();
+
+            const currentDate = currentDay.getDate();
+            const currentMoth = currentDay.getMonth();
+            let year = currentDay.getFullYear();
+            console.log('year :', year);
+            if (currentDate > date && currentMoth == month - 1) {
+                year += 1;
+                console.log('year :', year);
+            }
+
+            const flagDay = new Date(year, month - 1, date);
+            const timeOfNextDay = flagDay.getTime();
+            console.log('flagDay :', flagDay);
+            console.log('timeOfNextDay :', timeOfNextDay);
+            const timeOfCurrentDay = currentDay.getTime();
+            const totalDay = Math.ceil((timeOfNextDay - timeOfCurrentDay) / milisecondOfDay);
+            document.writeln(`So ngay den ${date} thang ${month} con ${totalDay} ngay`);
+            return totalDay;
+            console.log('flagDay :', totalDay);
+        }
+
+        
+    </script>
+</body>
+
+</html>
